@@ -11,7 +11,7 @@ from server import Service
     'DNA_false',
     ['TTTA', 'ACACA']
 )
-def test_human_defining(DNA_true, DNA_false) -> None:
+def test_human_defining(DNA_true: str, DNA_false: str) -> None:
     """
         Tests that human health defined rightly
     """

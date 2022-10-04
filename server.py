@@ -2,7 +2,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 import grpc
 
-from definitions.builds.service_pb2 import Health
+from definitions.builds.service_pb2 import Health, HumanGenetic
 from definitions.builds.service_pb2_grpc import TestServiceStub, add_TestServiceServicer_to_server
 
 
@@ -12,7 +12,7 @@ class Service(TestServiceStub):
         super().__init__(channel)
 
     @staticmethod
-    def _check_health_impl(DNA):
+    def _check_health_impl(DNA: str):
         """Check health of human based on his DNA
 
         :DNA is DNA of human
@@ -20,7 +20,7 @@ class Service(TestServiceStub):
         """
         return "AAG" in DNA
 
-    def check_health(self, request):
+    def check_health(self, request: HumanGenetic):
         """Check health of human based on his DNA
         :request is request(health) for server
         :return: health of human based on his DNA
