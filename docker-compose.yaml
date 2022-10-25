@@ -1,0 +1,9 @@
+version: "3.1"
+
+services:
+  broker:
+    image: "rabbitmq:3-management"
+    ports:
+      - 15672:15672
+      - 24452:24452
+      - 34444:34444

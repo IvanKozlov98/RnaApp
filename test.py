@@ -1,21 +1,23 @@
 import pytest as pytest
 
-from server import Service
+from server import Hospital
 
 
-@pytest.mark.parametrize(
-    'DNA_true',
-    ['AAG', 'TTAAGG', 'TTAAG']
-)
-@pytest.mark.parametrize(
-    'DNA_false',
-    ['TTTA', 'ACACA']
-)
-def test_human_defining(DNA_true: str, DNA_false: str) -> None:
+def test_relative():
     """
-        Tests that human health defined rightly
+        Tests that relative defined rightly
     """
-    assert Service._check_health_impl(DNA_true)
-    assert not Service._check_health_impl(DNA_false)
+    assert Hospital.is_relative("aaaaa", "aaaaa")
+    assert Hospital.is_relative("aaaaaaaaga", "aaaaaaaaaa")
+    assert not Hospital.is_relative("tttttttttt", "aaaaaaaaaa")
+    assert not Hospital.is_relative("ttttttggtt", "aaaaaaaaaa")
 
 
+def test_ethnic():
+    """
+        Tests that checking same ethnic defined rightly
+    """
+    assert Hospital.is_same_ethnic_group("aaaaa", "aataa")
+    assert Hospital.is_same_ethnic_group("aaaaaaaggg", "aaaaaaaaaa")
+    assert not Hospital.is_same_ethnic_group("tttttttttt", "aaaaaaaaaa")
+    assert not Hospital.is_same_ethnic_group("ttttttggtt", "aaaaaaaaaa")
